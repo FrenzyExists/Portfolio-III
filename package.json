@@ -26,7 +26,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/aspect-ratio": "^0.4.0",
-		"@tailwindcss/typography": "^0.5.4",
+		"@tailwindcss/typography": "^0.5.10",
 		"@types/node": "^18.0.4",
 		"@vueuse/components": "^8.9.3",
 		"@vueuse/core": "^8.9.3",
