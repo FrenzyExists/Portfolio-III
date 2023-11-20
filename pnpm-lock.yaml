@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^0.20.2
     version: 0.20.2(@vueuse/head@0.7.6)(critters@0.0.16)(vite@3.0.0)(vue-router@4.1.2)(vue@3.2.37)
   vite-ssg-sitemap:
-    specifier: ^0.3.2
-    version: 0.3.2
+    specifier: ^0.6.1
+    version: 0.6.1
   vue-tsc:
     specifier: ^0.38.5
     version: 0.38.5(typescript@4.7.4)
@@ -4753,8 +4753,8 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /vite-ssg-sitemap@0.3.2:
-    resolution: {integrity: sha512-udsHc11VYQLSy/Zy6efKHnU/ABozGUz84Z9GqmrD8MaB2HCezqFVFAJukwZaxBzcEjy1jFXfNCIcT8J6LefpWw==}
+  /vite-ssg-sitemap@0.6.1:
+    resolution: {integrity: sha512-SMVDf17kwexkN/oSSDYo4rOGvRwmWQeiFQ16Ilvxx9hfm9ojWEVQ1BBZG90cI/XhDiJJTCBtLvB4YpoHz91Glg==}
     dev: true
 
   /vite-ssg@0.20.2(@vueuse/head@0.7.6)(critters@0.0.16)(vite@3.0.0)(vue-router@4.1.2)(vue@3.2.37):
