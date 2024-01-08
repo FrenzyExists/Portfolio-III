@@ -34,7 +34,7 @@
 		"autoprefixer": "^10.4.7",
 		"octokit": "^3.1.1",
 		"postcss": "^8.4.14",
-		"tailwindcss": "^3.1.6",
+		"tailwindcss": "^3.4.1",
 		"typed.js": "^2.0.16",
 		"unplugin-vue-markdown": "^0.24.3",
 		"vue": "^3.2.37",
