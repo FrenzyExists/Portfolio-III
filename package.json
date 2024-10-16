@@ -28,7 +28,7 @@
     "octokit": "^3.1.1",
     "vite-plugin-vue-markdown": "^0.23.8",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.2",
+    "vue-router": "^4.4.5",
     "vue3-carousel": "^0.3.4"
   },
   "devDependencies": {
