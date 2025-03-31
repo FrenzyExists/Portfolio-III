@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@octokit/rest": "^21.0.2",
     "@vuelidate/core": "^2.0.3",
