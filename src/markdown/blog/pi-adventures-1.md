@@ -1,12 +1,10 @@
 ---
 title: Pi Adventures Pt. 1
-status: Developing
-date: December 21th, 2025
-description: Multi-part series on using my Raspberry Pi 5 for uh, stuff. Part 1 is No Ads Plz
-tags:
-  - hardware
-  - linux
-  - raspberry-pi
+status: 'Blog'
+date: 'December 21th, 2025'
+readTime: '10min'
+description: 'Multi-part series on using my Raspberry Pi 5 for uh, stuff. Part 1 is No Ads Plz'
+tags: ['Hardware', 'Linux', 'Raspberry-pi']
 ---
 
 While visiting family in NY I really wanted to try a few of my gadgets before going back to the work grind, and I felt like putting my Freenove Raspberry Pi finally to some good use. This article is a multi-part series, because of course it is. Everyone is doing it so hey don't complain.
