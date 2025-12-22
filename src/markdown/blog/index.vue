@@ -12,8 +12,9 @@
 </template>
 
 <script lang="js">
-import { ref, computed, defineAsyncComponent } from 'vue';
+import { ref, computed, defineAsyncComponent, watch, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
+import { useRoute, useRouter } from 'vue-router';
 
 function getArticleInfo() {
   try {
@@ -40,7 +41,9 @@ export default {
     useHead({
       title: 'Big Brain Writting',
     })
-    const query = ref('');
+    const route = useRoute();
+    const router = useRouter();
+    const query = ref(route.query.tag || route.query.q || '');
     const articles = getArticleInfo();
 
     const filteredArticles = computed(() => {
@@ -52,13 +55,37 @@ export default {
       });
     });
 
+    function syncRoute(newValue) {
+      router.replace({
+        path: '/blog',
+        query: newValue ? { tag: newValue } : {}
+      })
+    }
+
     function handleUpdateQuery(newValue) {
       query.value = newValue;
+      syncRoute(newValue)
     }
 
     function handleSelectTag(tag) {
       query.value = tag;
+      syncRoute(tag)
     }
+
+    onMounted(() => {
+      if (query.value) {
+        syncRoute(query.value)
+      }
+    })
+
+    watch(
+      () => route.query.tag,
+      (val) => {
+        if ((val || '') !== query.value) {
+          query.value = val || ''
+        }
+      }
+    )
 
     return {
       query,

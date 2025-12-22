@@ -9,9 +9,10 @@
       class="-mb-5 article bg-dark-bg-mute rounded-none lg:rounded-xl relative w-full px-5 py-12 shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5 md:max-w-3xl md:mb-7 md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
       <div class="max-w-prose mx-auto lg:text-lg prose prose-toy-story">
         <div class="mb-8">
-          <a v-for="items in tags" href="#"
-            class="no-underline text-dark-blue hover:bg-dark-bg bg-dark-bg-hard font-medium text-sm px-3 py-1 mb-3 mr-3 rounded-md">{{
-              items }}</a>
+          <button v-for="items in tags" :key="items" type="button" @click="goToTag(items)"
+            class="no-underline text-dark-blue hover:bg-dark-bg bg-dark-bg-hard font-medium text-sm px-3 py-1 mb-3 mr-3 rounded-md">
+            #{{ items }}
+          </button>
         </div>
         <div class="text-center text-dark-text-soft">
           <time><span class="font-bold">Published </span> {{ date }}</time>
@@ -134,6 +135,9 @@ export default {
         .catch((err) => {
           console.error("Failed to copy URL:", err);
         });
+    },
+    goToTag(tag) {
+      this.$router.push({ path: '/blog', query: { tag } });
     },
     handleCommentAmount(value) {
       this.commentAmount = value;

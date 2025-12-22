@@ -17,12 +17,25 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export default {
   name: 'searchbar',
+  props: {
+    query: {
+      type: String,
+      default: ''
+    }
+  },
   setup(props, { emit }) {
-    const query = ref('')
+    const query = ref(props.query)
+
+    watch(
+      () => props.query,
+      (val) => {
+        if (val !== query.value) query.value = val
+      }
+    )
 
     function emitUpdateQuery() {
       emit('update:query', query.value)
