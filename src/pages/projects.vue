@@ -7,7 +7,7 @@
         <h2 class="text-4xl font-bold text-dark-acc mb-2">Projects</h2>
         <p class="text-dark-text-soft text-lg mb-6">Peek into selected builds, OSS experiments, and things I am tinkering with. Everything below pulls live from GitHub.</p>
         <div class="flex flex-wrap gap-3">
-          <a href="https://github.com/{{ import.meta.env.VITE_GITHUB_USER }}" target="_blank" rel="noreferrer"
+          <a :href="githubProfileUrl" target="_blank" rel="noreferrer"
             class="inline-flex items-center gap-2 rounded-full bg-dark-bg-mute px-4 py-2 text-sm font-semibold text-dark-text hover:bg-dark-acc hover:text-dark-bg transition">
             <font-awesome-icon class="text-inherit" icon="fa-brands fa-github" />
             View GitHub
@@ -74,6 +74,11 @@ export default {
     hasMoreProjects: true, // Determines if more projects are available to load
     loading: false
   }),
+  computed: {
+    githubProfileUrl() {
+      return `https://github.com/${import.meta.env.VITE_GITHUB_USER}`
+    }
+  },
   async created() {
     await this.fetchData()
   },
