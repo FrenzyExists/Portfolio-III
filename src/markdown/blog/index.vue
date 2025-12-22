@@ -7,7 +7,7 @@
     <div class="p-10 justify-center">
       <searchbar v-model:query="query" @update:query="handleUpdateQuery" />
     </div>
-    <article-block :articles="filteredArticles" />
+    <article-block :articles="filteredArticles" @select-tag="handleSelectTag" />
   </div>
 </template>
 
@@ -44,18 +44,28 @@ export default {
     const articles = getArticleInfo();
 
     const filteredArticles = computed(() => {
-      return articles.filter(({ title }) => {
-        return [title].some(val => String(val).toLowerCase().includes(query.value.toLocaleLowerCase()))
+      const q = query.value.toLocaleLowerCase();
+      return articles.filter(({ title, tags = [] }) => {
+        const tagMatch = tags.some(tag => String(tag).toLowerCase().includes(q));
+        const titleMatch = String(title).toLowerCase().includes(q);
+        return titleMatch || tagMatch;
       });
     });
 
     function handleUpdateQuery(newValue) {
       query.value = newValue;
-    } return {
+    }
+
+    function handleSelectTag(tag) {
+      query.value = tag;
+    }
+
+    return {
       query,
       articles,
       filteredArticles,
-      handleUpdateQuery
+      handleUpdateQuery,
+      handleSelectTag
     };
   }
 };

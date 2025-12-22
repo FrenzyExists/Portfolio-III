@@ -26,7 +26,8 @@
         <div
           class="flex gap-2 self-end tags bg-dark-bg-super-soft-trans after:h-full after:w-full after:absolute after:top-0 after:left-0 opacity-75 pt-5 pb-2 after:-z-50 px-2">
           <button v-for="tag in article.tags" :key="tag"
-            class="tag-btn block bg-color-bg-tag italic font-bold rounded-full px-[0.85em] py-[0.30em]" tabindex="0">
+            class="tag-btn block bg-color-bg-tag italic font-bold rounded-full px-[0.85em] py-[0.30em]" tabindex="0"
+            @click.stop.prevent="$emit('select-tag', tag)">
             #{{ tag }}
           </button>
         </div>
@@ -36,15 +37,14 @@
 </template>
 
 <script lang="js">
-import { ref } from 'vue'
-
 export default {
   props: {
     articles: {
       type: Array,
       required: true
     }
-  }
+  },
+  emits: ['select-tag']
 }
 </script>
 

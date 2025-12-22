@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Markdown styling tweaks */
+.prose {
+  line-height: 1.6;
+}
+
+.prose p,
+.prose li {
+  line-height: 1.6;
+}
+
+.prose code {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #f7c87c;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.prose code::before,
+.prose code::after {
+  content: '';
+}
+
+.prose pre {
+  background-color: #0d1b35;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.prose pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 0.95rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+.prose pre code::before,
+.prose pre code::after {
+  content: '';
+}
+
 * {
   box-sizing: border-box;
 }

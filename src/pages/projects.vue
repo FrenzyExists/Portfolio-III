@@ -1,8 +1,23 @@
 <template>
   <span class="pb-20 pt-4">
-    <div class="md:px-8 mt-12 prose prose-toy-story dark:prose-invert max-w-7xl mx-auto">
-      <h2>Projects</h2>
-      <p>Want to see more? Visit my GitHub profile or check out the rest of my projects below!</p>
+    <div class="relative overflow-hidden bg-dark-bg-super-soft/40 border border-dark-bg-super-hard/40 rounded-3xl max-w-7xl mx-auto md:px-10 px-6 py-10 mt-10">
+      <div class="absolute -top-10 -left-10 h-40 w-40 rounded-full bg-dark-acc/15 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-12 -right-16 h-48 w-48 rounded-full bg-dark-green/10 blur-3xl pointer-events-none"></div>
+      <div class="prose prose-toy-story dark:prose-invert max-w-none relative">
+        <h2 class="text-4xl font-bold text-dark-acc mb-2">Projects</h2>
+        <p class="text-dark-text-soft text-lg mb-6">Peek into selected builds, OSS experiments, and things I am tinkering with. Everything below pulls live from GitHub.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://github.com/{{ import.meta.env.VITE_GITHUB_USER }}" target="_blank" rel="noreferrer"
+            class="inline-flex items-center gap-2 rounded-full bg-dark-bg-mute px-4 py-2 text-sm font-semibold text-dark-text hover:bg-dark-acc hover:text-dark-bg transition">
+            <font-awesome-icon class="text-inherit" icon="fa-brands fa-github" />
+            View GitHub
+          </a>
+          <span class="inline-flex items-center gap-2 rounded-full bg-dark-bg-mute px-4 py-2 text-sm font-semibold text-dark-text-soft">
+            <font-awesome-icon class="text-dark-yellow" icon="fa-solid fa-bolt" />
+            Auto-synced from GitHub
+          </span>
+        </div>
+      </div>
     </div>
 
     <div>
@@ -14,9 +29,18 @@
       <!-- Display content once loading is complete -->
       <div v-else>
         <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 my-12">
-          <div class="mx-auto grid grid-cols-1 md:gap-8 md:grid-cols-2 lg:max-w-5xl gap-y-12 lg:grid-cols-3 lg:gap-x-8">
-            <ProjectCard v-for="p in github_response" :key="p.id" :projectName="p.name" :projectDesc="p.description"
-              :projectStars="p.stars" :projectForks="p.forks" :projectUrl="p.url" />
+          <div
+            class="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
+            <ProjectCard
+              v-for="p in github_response"
+              :key="p.id"
+              :projectName="p.name"
+              :projectDesc="p.description"
+              :projectStars="p.stars"
+              :projectForks="p.forks"
+              :projectUrl="p.url"
+              :projectTopics="p.tags"
+            />
           </div>
         </div>
       </div>

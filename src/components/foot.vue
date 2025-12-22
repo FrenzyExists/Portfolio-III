@@ -56,8 +56,8 @@ const socials = [
     url: `https://wa.me/${import.meta.env.VITE_PHONE_NUMBER}`
   },
   {
-    icon: 'fa-brands fa-twitter',
-    url: `https://twitter.com/${import.meta.env.VITE_TWITTER}`
+    icon: 'fa-brands fa-x-twitter',
+    url: `https://x.com/${import.meta.env.VITE_TWITTER}`
   },
   {
     icon: 'fa-brands fa-github',

@@ -1,8 +1,7 @@
 ---
 title: Pi Adventures Pt. 1
-status: 'Blog'
+status: 'Testing'
 date: 'December 21th, 2025'
-readTime: '10min'
 description: 'Multi-part series on using my Raspberry Pi 5 for uh, stuff. Part 1 is No Ads Plz'
 tags: ['Hardware', 'Linux', 'Raspberry-pi']
 ---
@@ -104,7 +103,7 @@ By the end you gonna end up with a CLI window like thisn one
 │                                                                    │
 │ To allow your user to use all CLI functions without                │
 │ authentication,                                                    │
-│ refer to https://docs.pi-hole.net/main/post-install/		           │
+│ refer to https://docs.pi-hole.net/main/post-install/		          │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -158,7 +157,7 @@ Is blocking alive? Ask a known ad domain:
 ```sh
 nslookup doubleclick.net
 ```
-If it comes back `0.0.0.0` or `0.0.0.0#`/`0.0.0.0 (NXDOMAIN)`, the sinkhole is doing its thing. If you see a real IP, something’s off (probably still talking to ISP DNS).
+If it comes back `0.0.0.0` or `0.0.0.0#/0.0.0.0 (NXDOMAIN)`, the sinkhole is doing its thing. If you see a real IP, something’s off (probably still talking to ISP DNS).
 
 If you’re stuck without router access and don’t want to touch every device, you *might* spoof DHCP/DNS with something like dnsmasq/odhcpd to hand out your Pi as DNS, but that’s another episode of this cursed show.
 

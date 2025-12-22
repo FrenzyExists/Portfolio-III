@@ -31,10 +31,15 @@
         </div>
         <div class="flex items-center">
           <aside>
-            <a href="#" @click.prevent="shareOnTwitter"
+            <a href="#" @click.prevent="shareOnX"
               class="no-underline text-dark-blue-soft bg-dark-bg-mute hover:text-dark-acc-soft hover:bg-dark-bg-super-soft-trans border mr-2 items-center border-dark-bg-hard font-medium text-sm px-3 py-2 rounded-lg inline-flex">
-              <font-awesome-icon class="mr-2 text-dark-blue" icon="fa-brands fa-twitter" />
-              Tweet
+              <font-awesome-icon class="mr-2 text-dark-blue" icon="fa-brands fa-x-twitter" />
+              Post on X
+            </a>
+            <a href="#" @click.prevent="shareOnBluesky"
+              class="no-underline text-dark-blue-soft bg-dark-bg-mute hover:text-dark-acc-soft hover:bg-dark-bg-super-soft-trans border mr-2 items-center border-dark-bg-hard font-medium text-sm px-3 py-2 rounded-lg inline-flex">
+              <font-awesome-icon class="mr-2 text-dark-blue" icon="fa-brands fa-bluesky" />
+              Post on Bluesky
             </a>
             <a href="#" @click.prevent="copyToClipboard"
               class="no-underline text-dark-blue-soft bg-dark-bg-mute hover:text-dark-acc-soft hover:bg-dark-bg-super-soft-trans border mr-2 items-center border-dark-bg-hard font-medium text-sm px-3 py-2 rounded-lg inline-flex">
@@ -106,11 +111,17 @@ export default {
         this.readtime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
       });
     },
-    shareOnTwitter() {
+    shareOnX() {
       const pageUrl = encodeURIComponent(window.location.href);
       const text = encodeURIComponent("Check out this page!");
-      const twitterUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
-      window.open(twitterUrl, "_blank");
+      const xUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
+      window.open(xUrl, "_blank");
+    },
+    shareOnBluesky() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("Check out this page!");
+      const blueskyUrl = `https://bsky.app/intent/compose?text=${text}%20${pageUrl}`;
+      window.open(blueskyUrl, "_blank");
     },
     copyToClipboard() {
       const pageUrl = window.location.href;

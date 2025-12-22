@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createHead } from '@vueuse/head'
 import './styles/style.css'
+import 'prismjs/themes/prism-tomorrow.css'
 import cors from 'cors'
 import router from './router'
 
@@ -37,7 +38,8 @@ import {
   faSmile
 } from '@fortawesome/free-solid-svg-icons'
 import {
-  faTwitter,
+  faXTwitter,
+  faBluesky,
   faGithub,
   faLinkedin,
   faWhatsapp,
@@ -90,7 +92,8 @@ library.add(
   faEllipsis,
   faFaceLaugh,
   faPaperPlane,
-  faTwitter,
+  faXTwitter,
+  faBluesky,
   faLink,
   faCommentDots,
   faLaptopCode,
