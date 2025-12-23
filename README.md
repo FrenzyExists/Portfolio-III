@@ -2,15 +2,11 @@
 
 # ✨ Pikachu's Personal Website ✨
 
-
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/FrenzyExists/Portfolio-III?style=for-the-badge&logo=github&color=F4A4B5)](https://github.com/FrenzyExists/Portfolio-III)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&color=98C379)](LICENSE)
 
-<a href="https://github.com/FrenzyExists/Portfolio-III/stargazers"><img src="https://img.shields.io/github/stars/FrenzyExists/Portfolio-III?style=for-the-badge&logo=starship style=flat-square"></a>
-
 </div>
-
 
 
 ## About
