@@ -161,6 +161,95 @@ If it comes back `0.0.0.0` or `0.0.0.0#/0.0.0.0 (NXDOMAIN)`, the sinkhole is doi
 
 If you’re stuck without router access and don’t want to touch every device, you *might* spoof DHCP/DNS with something like dnsmasq/odhcpd to hand out your Pi as DNS, but that’s another episode of this cursed show.
 
+### Improving the blocking part
+
+Go to https://firebog.net/ where links n stuff that can be blocked are found. Take whatever list you see fit and add it to the list.
+
+### Enabling HTTPS
+
+You've noticed that when entering the admin page in the login you get a message saying to use the https version so you get an encrypted connection. Got tired of seeing that? Me too so let's fix that.
+
+Reason we get that message too is cause for security sake we should set up a real TLS cert (Let’s Encrypt), cause when you don't and click the https version Chrome will get a stroke saying that its unencrypted and is dangerous... cause it kinda is.
+
+Make sure IPv6 stays on
+
+```sh
+sudo sysctl -w net.ipv6.conf.all.forwarding=1
+sudo sysctl -w net.ipv6.conf.default.forwarding=1
+```
+
+Then make it persistent:
+
+```sh
+sudo tee -a /etc/sysctl.conf >/dev/null <<'EOF'
+net.ipv6.conf.all.forwarding = 1
+net.ipv6.conf.default.forwarding = 1
+EOF
+```
+
+Reload sysctl:
+
+```sh
+sudo sysctl -p
+```
+
+Install certbot + lighttpd SSL tools
+
+```sh
+sudo apt install -y certbot python3-certbot-lighttpd
+```
+
+Point DNS for your Pi to a real hostname
+
+Create an A/AAAA record (e.g., `pihole.example.com`) pointing to your Pi’s public IP. Make sure port 80 is reachable temporarily for the HTTP-01 challenge.
+
+Get the certificate
+
+```sh
+sudo certbot certonly --webroot -w /var/www/html -d pihole.example.com
+```
+
+Cert files land in `/etc/letsencrypt/live/pihole.example.com/`.
+
+Wire lighttpd to use the cert
+
+```sh
+sudo tee /etc/lighttpd/conf-enabled/https-pihole.conf >/dev/null <<'EOF'
+$SERVER["socket"] == ":443" {
+  ssl.engine  = "enable"
+  ssl.pemfile = "/etc/letsencrypt/live/pihole.example.com/fullchain.pem"
+  ssl.privkey = "/etc/letsencrypt/live/pihole.example.com/privkey.pem"
+  server.name = "pihole.example.com"
+}
+EOF
+```
+
+Restart lighttpd:
+
+```sh
+sudo systemctl restart lighttpd
+```
+
+Auto-renew (Let’s Encrypt)
+
+```sh
+echo "0 4 * * * root certbot renew --quiet && systemctl reload lighttpd" | sudo tee /etc/cron.d/certbot-lighttpd
+```
+
+Sanity checks
+
+```sh
+sudo lighttpd -tt                      # config syntax
+sudo systemctl status lighttpd         # service healthy?
+sudo certbot renew --dry-run           # renewal works?
+curl -I https://pihole.example.com/admin
+```
+
+You should see an HTTP 200/301 with a valid cert. If the browser still shows “Not secure”, double-check the hostname you’re visiting matches the cert CN/SAN, and that port 443 is open on your network edge.
+
+> Next part is getting a VPN running in the Pi using PiVPN
+
+
 ### Sources
 
 - https://docs.pi-hole.net/
